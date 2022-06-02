@@ -41,7 +41,7 @@ end
 puts Gear.new(52, 11, 26, 1.5).gear_inches
 
 
-# solution #1
+# solution #1 dependency injection
 
 class Gear
 
@@ -65,4 +65,31 @@ class Gear
 end
 
 puts Gear.new(52, 11, Wheel.new(26, 1.5)).gear_inches
+
+
+# solution #2 isolate instances
+
+class Gear
+
+  attr_reader :chainring, :cog, :rim, :tire
+
+  def initialize(chainring, cog, rim, tire)
+    @chainring = chainring
+    @cog = cog
+    @wheel = wheel
+    @tire = tire
+  end
+
+  def gear_inches
+    ratio * wheel.diameter
+  end
+
+  def wheel
+    @wheel ||= Wheel.new(rim, tire)
+  end
+
+end
+
+puts Gear.new(52, 11, 26, 1.5).gear_inches
+
 
