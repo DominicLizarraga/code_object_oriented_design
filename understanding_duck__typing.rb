@@ -43,3 +43,38 @@ class Driver
 
   end
 end
+
+
+# removing case statements
+
+class Trip
+
+  attr_reader :bicycle, :customers, :vehicule
+
+  def prepare(prepares)
+    prepares.each { |preparer|
+      preparer.prepare_trip(self)}
+  end
+end
+
+class Mechanic
+  def prepare_trip(trip)
+    trip.bicycles.each { |bicycle|
+      prepare_bicycle(bicycle)}
+  end
+end
+
+class TripCoordinator
+  def prepare_trip(trip)
+    buy_food(trip.customers)
+  end
+end
+
+class Driver
+  def prepare_trip(trip)
+    vehicule = trip.vehicule
+    gas_up(vehicule)
+    fill_water_tank(vehicule)
+  end
+
+end
