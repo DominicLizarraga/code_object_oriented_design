@@ -1,9 +1,9 @@
-# 5th chapter covers the benefits and the characteristics of duck typing and how to tackle
+# 5th chapter covers the benefits and the characteristics of duck typing and how to tackle.
 
 
 # The purpose of object oriented design is to reduce the cost of change.
 
-# Duck typing are more defined by its behavior than its class
+# Duck typing is more defined by its behavior than its class.
 
 class Trip
 
@@ -45,7 +45,7 @@ class Driver
 end
 
 
-# removing case statements
+# ********removing case statements********
 
 class Trip
 
@@ -78,3 +78,30 @@ class Driver
   end
 
 end
+
+
+# how to identify a duck typing with kind_of? and is_a? methods
+
+
+if preparer.kind_of?(Mechanic)
+  preparer.prepare_bicycle(bicycles)
+elsif preparer.kind_of?(TripCoordinator)
+  preparer.buy_food(customers)
+elsif preparer.kind_of?(Driver)
+  preparer.gas_up(vehicule)
+  preparer.fill_water_tank(vehicule)
+end
+
+# also checking if preparer method respons to some others instance methods is a way to verify if this is a candidate to be replaced
+
+if preparer respond_to?(:prepare_bicycle)
+  preparer.prepare_bicycle(bicycles)
+elsif preparer.respond_to(:buy_food)
+  preparer.buy_food(:customers)
+elsif preparer.respond_to(:gas_up)
+  preparer.gas_up(vehicule)
+  preparer.fill_water_tank(vehicule)
+end
+
+
+
