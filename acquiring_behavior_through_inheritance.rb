@@ -31,3 +31,67 @@ bike = Bycicle.new(
 puts bike.size
 
 puts bike.spares
+
+
+
+# first method to solve the issue without inheritance, this is adding code to the class.
+
+
+class Bicycle
+  attr_reader :style, :size,
+              :tape_color,
+              :front_shock, :rear_shock
+
+  def initialize(**opts)
+    @style       = opts[:style]
+    @size        = opts[:size]
+    @tape_color  = opts[:tape_color]
+    @front_shock = [:front_shock]
+    @rear_shock  = [:rear_shock]
+
+  end
+
+
+  def spares
+    if style == :road
+      { chain :     '11-speed',
+        tire_size:  '23',
+        tape_color: tape_color }
+    else
+      { chain: '11-sped',
+        tire_size: '2.1',
+        front_shock: front_shock }
+    end
+  end
+
+end
+
+
+bike_1 = Bycicle.new(
+        style: :mountain,
+        size: 'S',
+        front_shock: 'Manitou',
+        rear_shock: 'Fox')
+
+puts bike_1.spares
+
+bike_2 = Bycicle.new(
+        style: :road,
+        size: 'M',
+        tape_color: 'red')
+
+puts bike_2.spares
+
+
+
+
+
+
+
+
+
+
+
+
+
+
