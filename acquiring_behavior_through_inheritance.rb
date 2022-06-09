@@ -83,7 +83,39 @@ bike_2 = Bycicle.new(
 puts bike_2.spares
 
 
+# second attempt to solve this by creating a new subclass
 
+class MountainBike < Bycicle
+
+  attr_reader :front_shock, :rear_shock
+
+  def initialize(front_shock, rear_shock)
+    @front_shock = front_shock
+    @rear_shock = rear_shock
+    super
+  end
+
+  def spares
+    super merge(front_shock: front_shock)
+  end
+
+end
+
+mountain_bike = MountainBike.new(
+                  size: 'S',
+                  front_shock: 'Manitou',
+                  rear_shock: 'Fox')
+
+puts mountain_bike.size
+
+
+puts mountain_bike.spares # this will print tire_size and tape_color which is wrong
+
+
+
+
+
+  end
 
 
 
