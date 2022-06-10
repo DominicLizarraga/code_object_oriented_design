@@ -5,7 +5,7 @@
 
 # Inheritance is at its core a mechanism for automatic message delegation.
 
-class Bycicle
+class Bicycle
 
   attr_reader :size, :tape_color
 
@@ -67,7 +67,7 @@ class Bicycle
 end
 
 
-bike_1 = Bycicle.new(
+bike_1 = Bicycle.new(
         style: :mountain,
         size: 'S',
         front_shock: 'Manitou',
@@ -75,7 +75,7 @@ bike_1 = Bycicle.new(
 
 puts bike_1.spares
 
-bike_2 = Bycicle.new(
+bike_2 = Bicycle.new(
         style: :road,
         size: 'M',
         tape_color: 'red')
@@ -112,18 +112,27 @@ puts mountain_bike.size
 puts mountain_bike.spares # this will print tire_size and tape_color which is wrong
 
 
+# third way to resolve inheritance issue, this time by creting an abstract class
 
+class Bicycle
+  # this class is empty except for initialize
+  # code has been moved to RoadBike
 
+  def initialize(**opts)
 
   end
 
+end
 
+class RoadBike < Bycicle
+  # Now a subclass of Bicycle
+  # Contains all code from the old Bicycle class
 
+end
 
+class MountainBike < Bicycle
+  # Still a subclass of Bicycle
+  # Code has not changed
 
-
-
-
-
-
+end
 
