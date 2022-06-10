@@ -115,24 +115,47 @@ puts mountain_bike.spares # this will print tire_size and tape_color which is wr
 # third way to resolve inheritance issue, this time by creting an abstract class
 
 class Bicycle
-  # this class is empty except for initialize
-  # code has been moved to RoadBike
+  attr_reader :size
 
   def initialize(**opts)
-
+    @size = opts[:size]
   end
 
 end
 
 class RoadBike < Bycicle
-  # Now a subclass of Bicycle
-  # Contains all code from the old Bicycle class
+  attr_reader :tape_color
+
+  def initialize(**opts)
+    @tape_color = opts[:tape_color]
+    super
+
+  end
 
 end
 
 class MountainBike < Bicycle
-  # Still a subclass of Bicycle
-  # Code has not changed
+
+  attr_reader :front_shock, :rear_shock
+
+  def initialize(front_shock, rear_shock)
+    @front_shock = front_shock
+    @rear_shock = rear_shock
+    super
+  end
 
 end
+
+road_bike = RoadBike.new(
+              size:       'M',
+              tape_color: 'red')
+
+mountain_bike = MountainBike.new(
+                  size: 'S',
+                  front_shock: 'Manitou',
+                  rear_shock: 'Fox')
+
+puts road_bike.size
+
+puts mountain_bike.size
 
