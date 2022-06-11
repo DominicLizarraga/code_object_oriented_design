@@ -162,7 +162,29 @@ puts mountain_bike.size
 
 # fourth way to solve this by separating abstract from concrete
 
+class Bicycle
+
+  def initialize(**opts)
+    @size      = opts[:size]
+    @chain     = opts[:chain]
+    @tire_size = opts[:tire_size]
+  end
+
+  def spares
+    { front_shock: 'Manitou',
+      rear_shock: 'Fox'}
+  end
+
+
+end
+
+
+
 class RoadBike < Bicycle
+
+  def initialize(**opts)
+    @tape_color = opts[:tape_color]
+  end
 
   def spares
     { chain: '11-speed',
@@ -180,7 +202,7 @@ class MountainBike < Bicycle
 
 end
 
-puts mountain_bike.spares # it will thro no super class method
+puts mountain_bike.spares # it will throw no super class method
 
 
 
