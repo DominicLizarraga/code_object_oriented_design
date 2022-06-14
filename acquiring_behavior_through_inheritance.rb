@@ -398,12 +398,35 @@ puts mountain_bike.spares # tire_size: 2.1, chain: 11-speed, front_shock: 'Manit
 
 
 
+# creating a new subclass of Bicycle with hook message must not be a problem.
 
 
 
+class RecumbentBike < Bicycle
+
+  attr_reader :flag
+
+  def initialize(**opts)
+    @flag = opts[:flag]
+  end
+
+  def local_spares
+    { flag: flag}
+  end
+
+  def default_chain
+    '10-speed'
+  end
+
+  def default_tire_size
+    '28'
+  end
+end
 
 
+bent = RecumbentBike.new(
+          size: 'M',
+          flag: 'tall and orange')
 
-
-
+puts bent.spares # tire_size:'M', chain: 10-speed, flag: 'tall and orange'
 
