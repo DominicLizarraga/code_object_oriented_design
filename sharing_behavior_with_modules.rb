@@ -70,14 +70,37 @@ module Schedulable
   end
 
   def scheduled?(starting, ending)
-    schedule.scheduled?(self, starting, ending)
+    !schedule.scheduled?(self, starting, ending)
   end
 
+  # includers may override this method
   def lead_days
     0
   end
 
+end
 
+
+class Bicycle
+  incluse Schedulable
+
+  def kead_days
+    1
+  end
 
 end
+
+require 'date'
+
+starting = Date.parse("2019/09/04")
+ending = Date.parse("2019/09/10")
+
+b = Bicycle.new
+puts b.schedulable?(starting, ending)
+
+# "This Bicycle is available 2019-09-03 - 2019-09-10"
+# True
+
+
+# The code in Schedulable is the abstraction and it uses the template method pattern to invite objects to privde specialization to the algorithm it supplies.
 
