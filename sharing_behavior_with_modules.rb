@@ -104,3 +104,43 @@ puts b.schedulable?(starting, ending)
 
 # The code in Schedulable is the abstraction and it uses the template method pattern to invite objects to privde specialization to the algorithm it supplies.
 
+
+
+class Vehicle
+  include Schedulable
+
+  def lead_days
+    3
+  end
+
+  # ...
+
+end
+
+
+class Mechanic
+  include Schedulable
+
+  def lead_days
+    4
+  end
+
+  # ...
+
+end
+
+require 'date'
+
+starting = Date.parse("2019/09/04")
+ending = Date.parse("2019/09/10")
+
+
+v = Vehicle.new
+puts v.schedulable?(starting, ending)
+# "This Vehicle is available 2019-09-03 - 2019-09-10"
+# True
+
+m = Mechanic.new
+puts m.schedulable?(starting, ending)
+# "This Mechanic is available 2019-08-31 - 2019-09-10"
+# True
