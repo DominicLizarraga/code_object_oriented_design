@@ -94,3 +94,26 @@ class MountainBikeParts < Parts
 
 end
 
+road_bike = Bicycle.new(
+            size: 'L',
+            parts: RoadBikeParts.new(tape_color: 'red'))
+
+puts road_bike.size
+# => L
+
+puts   road_bike.spares
+# => {:chain => '11-speed', :tire_size => '23', :tape_color => 'red'}
+
+
+mountain_bike = Bicycle.new(
+                  size: 'L',
+                  parts: MountainBikeParts.new(
+                          front_shock: 'Manitou',
+                          rear_shock: 'Fox')
+                  )
+
+puts mountain_bike.size
+# => L
+
+puts mountain_bike.parts
+# => {:chain => '11-speed', :tire_size => '2.1', :front_schock => 'Manitou'}
