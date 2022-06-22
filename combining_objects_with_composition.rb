@@ -189,14 +189,32 @@ front_schock =
 
 
 road_bike_parts =
-    PArts.new(chain, road_tire, tape)
+    Parts.new(chain, road_tire, tape)
+
+road_bike =
+  Bicycle.new(
+    size: 'L',
+    parts: Parts.new([chain,
+                      road_bike,
+                      tape]))
+
+puts road_bike.size
+# => L
+
+puts road_bike.spares.inspect
 
 
+mountain_bike =
+  Bicycle.new(
+    size: 'L',
+    parts: Parts.new([chain,
+                      mountain_tire,
+                      front_shock,
+                      rear_shock]))
+puts mountain_bike.size
+# => L
 
-
-
-
-
+puts mountain_bike.spares.inspect
 
 
 
