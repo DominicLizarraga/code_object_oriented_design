@@ -140,7 +140,7 @@ class Bicycle
 
 end
 
-class Parts
+class Parts < Array
 
   attr_reader :parts
 
@@ -150,7 +150,11 @@ class Parts
 
 
   def spares
-    parts.select { |part| part.needs_spare}
+    select { |part| part.needs_spare}
+  end
+
+  def size
+    parts.size
   end
 
 end
@@ -215,6 +219,14 @@ puts mountain_bike.size
 # => L
 
 puts mountain_bike.spares.inspect
+
+
+combo_parts =
+  ( mountain_bike.parts + road_bike.parts )
+
+puts mountain_bike.parts.class # => Parts
+puts road_bike.parts.class     # => Parts
+puts combo_parts.class         # => Array
 
 
 
