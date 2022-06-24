@@ -140,8 +140,12 @@ class Bicycle
 
 end
 
-class Parts < Array
+require 'forwardable'
 
+class Parts < Array
+  extend Forwardable
+  def_delegators :@parts, :size, :each
+  include Enumerable
   attr_reader :parts
 
   def initialize(parts)
