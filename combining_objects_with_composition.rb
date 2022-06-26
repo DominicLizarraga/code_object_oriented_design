@@ -379,3 +379,22 @@ puts road_bike.spares
 # =>    name='tape_color',
 # =>    description='red',
 # =>    needs_spare=true>
+
+mountain_bike =
+  Bicycle.new(
+    size: 'L',
+    parts: PartsFactory.build(config: mountain_config))
+
+puts mountain_bike.spares
+# => #<OpenStruct
+# =>    name='chain',
+# =>    description='11-speed',
+# =>    needs_spare=true>
+# => #<OpenStruct
+# =>    name='tire_size',
+# =>    description='2.1',
+# =>    needs_spare=true>
+# => #<OpenStruct
+# =>    name='front_schock',
+# =>    description='Manitou',
+# =>    needs_spare=true>
