@@ -268,3 +268,38 @@ puts PartsFactory.build(config: road_config).inspect
 
 puts PartsFactory.build(config: mountain_config).inspect
 
+
+# 3rd attempt now using Open Struct
+
+
+require 'ostruct'
+
+module PartsFactory
+  def self.build(config:, parts_class: Parts)
+    parts_class.new(
+      config.collect{ |part_config|
+        create_part(part_config)})
+  end
+
+  def self.create_part(part_config)
+    OpenStruct.new(
+      name:        part_config[0],
+      description: part_config[1],
+      needs_spare: part_config.fetch(2,true))
+  end
+end
+
+
+mountain_bike =
+  Bicycle.new(
+    size: 'L',
+    parts: PartsFactory.build(config: mountain_config))
+
+puts mountain_bike.class
+# => Array
+
+puts mountain_bike.spares
+
+
+
+
