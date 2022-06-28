@@ -398,3 +398,44 @@ puts mountain_bike.spares
 # =>    name='front_schock',
 # =>    description='Manitou',
 # =>    needs_spare=true>
+
+
+
+# adding a new sub class
+
+
+recumbent_config =
+  [['chain', '9-speed'],
+   ['tire_size', '28'],
+   ['flag', 'tall and orange']]
+
+recumbent_bike =
+    Bicycle.new(
+      size: 'L',
+      parts: PArtsFactory.build(config: recumbent_config))
+
+puts recumbent_bike.spares
+# => #<OpenStruct
+# =>    name='chain',
+# =>    description='9-speed',
+# =>    needs_spare=true>
+# => #<OpenStruct
+# =>    name='tire_size',
+# =>    description='28',
+# =>    needs_spare=true>
+# => #<OpenStruct
+# =>    name='flag',
+# =>    description='tall and orange',
+# =>    needs_spare=true>
+
+
+# Classical inheritance is a code arrangement technique. Behavior is dispersed among objects and these objects are organized into class relationships such as that automatic delegation of messages invokes the correct behavior.
+
+# Composition allows objects to have structured independece but at the cost of explicit message delegation
+
+# Composition contains far fewer built-in dependencies than inheritance; it is very often the best choice.
+
+# Inheritance is a better solution when its use provides high rewards for low risk.
+
+
+
